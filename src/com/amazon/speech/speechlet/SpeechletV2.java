@@ -87,7 +87,13 @@ public interface SpeechletV2 {
      */
     SpeechletResponse onIntent(SpeechletRequestEnvelope<IntentRequest> requestEnvelope);
 
-    //TODO: Add javadocs
+    /**
+     * Entry point for handling a received notification request.<br>
+     *
+     * This is where the Skill is intended to handle and post a notification to the Alexa notification service.
+     *
+     * @param requestEnvelope tge notification message received envelope to handle
+     */
     void onMessageReceived(SpeechletRequestEnvelope<MessageReceivedRequest> requestEnvelope);
 
     /**

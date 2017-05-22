@@ -94,7 +94,16 @@ public interface Speechlet {
      */
     SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException;
 
-    //TODO: Add javadocs
+    /**
+     * Entry point for handling a received notification request.<br>
+     *
+     * This is where the Skill is intended to handle and post a notification to the Alexa notification service.
+     *
+     * @param request the message received request to handle
+     * @param session the session associated with the request
+     * @throws SpeechletException
+     *            for any errors encountered in the processing of the request
+     */
     void onMessageReceived(MessageReceivedRequest request, Session session) throws SpeechletException;
 
     /**
