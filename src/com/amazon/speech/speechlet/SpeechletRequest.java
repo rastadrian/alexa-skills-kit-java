@@ -22,6 +22,7 @@ import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackFinish
 import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackNearlyFinishedRequest;
 import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackStartedRequest;
 import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackStoppedRequest;
+import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.request.NextCommandIssuedRequest;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.request.PauseCommandIssuedRequest;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.request.PlayCommandIssuedRequest;
@@ -51,6 +52,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "type")
 @JsonSubTypes({
         // The sub types that extend the SpeechletRequest class.
+        @Type(value = MessageReceivedRequest.class),
         @Type(value = LaunchRequest.class),
         @Type(value = IntentRequest.class),
         @Type(value = SessionStartedRequest.class),

@@ -13,6 +13,8 @@
 
 package com.amazon.speech.speechlet;
 
+import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
+
 /**
  * <p>
  * A {@code Speechlet} is a speech-enabled web service that runs in the cloud. A {@code Speechlet}
@@ -91,6 +93,9 @@ public interface Speechlet {
      *             for any errors encountered in the processing of the request
      */
     SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException;
+
+    //TODO: Add javadocs
+    void onMessageReceived(MessageReceivedRequest request, Session session) throws SpeechletException;
 
     /**
      * Callback used to notify that the session ended as a result of the user interacting, or not

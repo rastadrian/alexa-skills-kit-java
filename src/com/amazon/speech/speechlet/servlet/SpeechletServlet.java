@@ -92,6 +92,8 @@ public class SpeechletServlet extends HttpServlet {
                         proxy);
             }
 
+            log.info("Request: " + new String(serializedSpeechletRequest));
+
             outputBytes =
                     speechletRequestHandler.handleSpeechletCall(speechlet,
                             serializedSpeechletRequest);

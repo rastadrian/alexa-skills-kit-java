@@ -14,6 +14,7 @@
 package com.amazon.speech.speechlet;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
+import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
 
 /**
  * <p>
@@ -85,6 +86,9 @@ public interface SpeechletV2 {
      * @return the response, spoken and visual, to the request
      */
     SpeechletResponse onIntent(SpeechletRequestEnvelope<IntentRequest> requestEnvelope);
+
+    //TODO: Add javadocs
+    void onMessageReceived(SpeechletRequestEnvelope<MessageReceivedRequest> requestEnvelope);
 
     /**
      * Callback used to notify that the session ended as a result of the user interacting, or not
