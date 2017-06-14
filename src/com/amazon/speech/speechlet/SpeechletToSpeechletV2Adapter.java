@@ -15,6 +15,7 @@ package com.amazon.speech.speechlet;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
+import com.amazon.speech.speechlet.interfaces.permission.PermissionChangedRequest;
 
 /**
  * This class is intended for internal use only.
@@ -59,6 +60,15 @@ public class SpeechletToSpeechletV2Adapter implements SpeechletV2 {
     public void onMessageReceived(SpeechletRequestEnvelope<MessageReceivedRequest> requestEnvelope) {
         try {
             speechlet.onMessageReceived(requestEnvelope.getRequest(), requestEnvelope.getSession());
+        } catch (SpeechletException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void onPermissionChanged(SpeechletRequestEnvelope<PermissionChangedRequest> requestEnvelope) {
+        try {
+            speechlet.onPermissionChanged(requestEnvelope.getRequest(), requestEnvelope.getSession());
         } catch (SpeechletException e) {
             throw new RuntimeException(e);
         }

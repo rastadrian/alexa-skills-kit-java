@@ -27,6 +27,7 @@ import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackNearly
 import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackStartedRequest;
 import com.amazon.speech.speechlet.interfaces.audioplayer.request.PlaybackStoppedRequest;
 import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
+import com.amazon.speech.speechlet.interfaces.permission.PermissionChangedRequest;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.PlaybackController;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.request.NextCommandIssuedRequest;
 import com.amazon.speech.speechlet.interfaces.playbackcontroller.request.PauseCommandIssuedRequest;
@@ -245,6 +246,12 @@ public class SpeechletRequestDispatcher {
             SpeechletRequestEnvelope<MessageReceivedRequest> parametrizedRequestEnvelope =
                     (SpeechletRequestEnvelope<MessageReceivedRequest>) requestEnvelope;
             speechlet.onMessageReceived(parametrizedRequestEnvelope);
+            /** Permissions */
+        } else if (speechletRequest instanceof PermissionChangedRequest) {
+            @SuppressWarnings("unchecked")
+            SpeechletRequestEnvelope<PermissionChangedRequest> parametrizedRequestEnvelope =
+                    (SpeechletRequestEnvelope<PermissionChangedRequest>) requestEnvelope;
+            speechlet.onPermissionChanged(parametrizedRequestEnvelope);
             /** Exception **/
         } else {
             String requestType =

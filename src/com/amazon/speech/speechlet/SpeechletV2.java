@@ -15,6 +15,7 @@ package com.amazon.speech.speechlet;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
+import com.amazon.speech.speechlet.interfaces.permission.PermissionChangedRequest;
 
 /**
  * <p>
@@ -92,9 +93,16 @@ public interface SpeechletV2 {
      *
      * This is where the Skill is intended to handle and post a notification to the Alexa notification service.
      *
-     * @param requestEnvelope tge notification message received envelope to handle
+     * @param requestEnvelope the notification message received envelope to handle
      */
     void onMessageReceived(SpeechletRequestEnvelope<MessageReceivedRequest> requestEnvelope);
+
+    /**
+     * Entry point for handling a received event from a Permission Change on the skill.
+     *
+     * @param requestEnvelope the permission update event envelope to handle
+     */
+    void onPermissionChanged(SpeechletRequestEnvelope<PermissionChangedRequest> requestEnvelope);
 
     /**
      * Callback used to notify that the session ended as a result of the user interacting, or not
