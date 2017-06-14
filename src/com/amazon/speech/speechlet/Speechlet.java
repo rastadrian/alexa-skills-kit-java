@@ -13,6 +13,9 @@
 
 package com.amazon.speech.speechlet;
 
+import com.amazon.speech.speechlet.interfaces.messaging.request.MessageReceivedRequest;
+import com.amazon.speech.speechlet.interfaces.permission.PermissionChangedRequest;
+
 /**
  * <p>
  * A {@code Speechlet} is a speech-enabled web service that runs in the cloud. A {@code Speechlet}
@@ -91,6 +94,30 @@ public interface Speechlet {
      *             for any errors encountered in the processing of the request
      */
     SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException;
+
+    /**
+     * Entry point for handling a received notification request.<br>
+     *
+     * This is where the Skill is intended to handle and post a notification to the Alexa notification service.
+     *
+     * @param request the message received request to handle
+     * @param session the session associated with the request
+     * @throws SpeechletException
+     *            for any errors encountered in the processing of the request
+     */
+    void onMessageReceived(MessageReceivedRequest request, Session session) throws SpeechletException;
+
+    /**
+     * Entry point for handling user skill's permission updates.<br>
+     *
+     * This is where the Skill is intended to handle any permissions update from a user.
+     *
+     * @param request the permission event request to handle
+     * @param session the session associated with the request
+     * @throws SpeechletException
+     *            for any errors encountered in the processing of the request
+     */
+    void onPermissionChanged(PermissionChangedRequest request, Session session) throws SpeechletException;
 
     /**
      * Callback used to notify that the session ended as a result of the user interacting, or not

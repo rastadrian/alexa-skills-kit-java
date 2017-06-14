@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import com.amazon.speech.speechlet.Context;
 import com.amazon.speech.speechlet.State;
+import com.amazon.speech.speechlet.System;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -43,6 +44,9 @@ class ContextDeserializer extends StdDeserializer<Context> {
                 contextBuilder.addState(state);
             }
         }
+
+        System system = underlyingMapper.convertValue(messageNode.get("System"), System.class);
+        contextBuilder.withSystem(system);
 
         return contextBuilder.build();
     }

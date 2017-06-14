@@ -13,6 +13,8 @@
 
 package com.amazon.speech.speechlet;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,9 @@ import java.util.Map;
  */
 public final class Context {
     private final Map<Class<? extends Interface>, State<?>> states;
+
+    @JsonProperty("System")
+    private final System system;
 
     /**
      * Returns a new builder instance used to construct a new {@code Context}.
@@ -40,6 +45,7 @@ public final class Context {
      */
     private Context(final Builder builder) {
         this.states = Collections.unmodifiableMap(builder.states);
+        this.system = builder.system;
     }
 
     /**
@@ -81,17 +87,27 @@ public final class Context {
         return stateForInterface;
     }
 
+    public System getSystem() {
+        return system;
+    }
+
     /**
      * Builder used to construct a new {@code Context}.
      */
     public static final class Builder {
         private Map<Class<? extends Interface>, State<?>> states = new HashMap<>();
+        private System system;
 
         private Builder() {
         }
 
         public Builder addState(final State<? extends Interface> state) {
             states.put(state.getInterfaceClass(), state);
+            return this;
+        }
+
+        public Builder withSystem(final System system) {
+            this.system = system;
             return this;
         }
 
